@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./pubsub.js"></script>
+</head>
+
+<body>
+    <button id="btn">点击</button>
+</body>
+<script type="text/javascript">
+    let pubsub = new PubSub();
+    document.querySelector('button').addEventListener('click', () => {
+        pubsub.publish('test');
+    })
+    function fn1(){
+        console.log(1);
+    }
+    function fn2(){
+        console.log(2);
+        pubsub.removeSub('test',fn1);//会导致数组塌陷,下一个索引为2，splice删除fn1导致索引索引前移，fn4的索引为2
+    }
+    function fn3(){
+        console.log(3);
+    }
+    function fn4(){
+        console.log(4);
+    }
+    pubsub.subscribe('test',fn1);
+    pubsub.subscribe('test',fn2);
+    pubsub.subscribe('test',fn3);
+    pubsub.subscribe('test',fn4);
+</script>
+
+</html>
