@@ -8,3 +8,4 @@ function uniqueES5(arr) {
 /*ES6数组去重*/
 let uniqueES6 = arr => [... new Set(arr)] 
 console.log(uniqueES6(["B","C","D","B","C","A"]));
+console.log(new Set(["B","C","D","B","C","A"]));

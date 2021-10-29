@@ -21,4 +21,4 @@ let x1 = new Wang();
 x.__proto__.colors.push('white')//不隐藏__proto__
 x1.colors.push('balck')//隐藏__proto__
 
-console.log(x.colors);//[ 'red', 'blue', 'white', 'balck' ]
+console.log(x.__proto__ === x1.__proto__);//证明：x和x1的原型对象相同，是Person实例对象;

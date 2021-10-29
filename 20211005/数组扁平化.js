@@ -2,12 +2,12 @@
 function flattenES6(arr) {
     let i = 0;
     while (arr.some(item => Array.isArray(item))) {
-        arr = [].concat(...arr);
-        console.log(i++);
-        console.log(arr);
+        console.log(...arr);//...展开运算符，将同一级的的元素分开
+        arr = [].concat(...arr);//[].concat(item1,item2·····itemx)将多个元素合成一个数组
     }
     return arr
 }
+flattenES6([1, 3, [32, [123, [21],8,9,0,],21,4,2,1]])
 
 /*ES5*/
 function flattenES5(arr) {
