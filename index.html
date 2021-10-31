@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function Person(name, age) {
+        console.log(this, '构造函数中的this指向');
+        this.name = name;
+        this.age = age;
+        this.colors = ["red", "green", "white"]
+    }
+    Person.prototype.getName = function(){
+        console.log(this);
+        return this.name;
+    }
+
+    let p = new Person('ybj', 18);
+    let p1 = new Person('gzy', 16);
+    console.log(p1);
+    console.log(p1.getName());
+</script>
+
+</html>

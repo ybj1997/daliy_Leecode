@@ -24,10 +24,11 @@ const lazyLoad = (function(){
 function debounce (func,wait){
     let timer;
     return function() {
-        const _this = this;
+        const _this = this;//解决this的指向问题
+        const args = arguments;//解决事件对象event
         clearTimeout(timer);
         timer = setTimeout(()=>{
-            func.apply(_this, arguments);
+            func.apply(_this, args);
         },wait)
     }
 }
