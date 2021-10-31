@@ -12,21 +12,8 @@
 
 </body>
 <script>
-    function Person(name, age) {
-        console.log(this, '构造函数中的this指向');
-        this.name = name;
-        this.age = age;
-        this.colors = ["red", "green", "white"]
-    }
-    Person.prototype.getName = function(){
-        console.log(this);
-        return this.name;
-    }
-
-    let p = new Person('ybj', 18);
-    let p1 = new Person('gzy', 16);
-    console.log(p1);
-    console.log(p1.getName());
+let arr = [1,4,2,4,23,2,34,2,34]
+arr.map(item => console.log(this))
 </script>
 
 </html>
