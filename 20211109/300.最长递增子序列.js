@@ -1,20 +1,15 @@
 var lengthOfLIS = function (nums) {
-    let maxLen = 0;
-    if (nums.length === 0) return maxLen;
+    let dp = new Array(nums.length).fill(1);
+    let res = 1;
 
-    for (let L = 0; L < nums.length; L++) {
-        let R = L + 1;
-        let crtValue = nums[L];
-        let crtLen = 1;
-        while (R < nums.length) {
-            if(nums[R] > crtValue) {
-                crtLen++;
-                crtValue = nums[R];
+    for (let i = 1; i < nums.length; i++) {
+        for (let j = 0; j < i; j++) {
+            if(nums[i]>nums[j]){
+                dp[i] = Math.max(dp[i],dp[j]+1);
             }
-            R++;
         }
-        maxLen = Math.max(maxLen,crtLen);
+        res = Math.max(res,dp[i])
     }
-    return maxLen;
+    return res;
 };
-console.log(lengthOfLIS([10,9,2,5,3,7,101,18]))
+console.log(lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]))
