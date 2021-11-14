@@ -1,7 +1,7 @@
 Function.prototype.callSelf = function (context,...args) {
-    //不能使用let，块级作用域，let变量不能重复声明
-    let a = context || Window;
-    a.fn = this;//将调用函数添加到context对象中
+    //let变量不能重复声明
+    let a = context || window;//保存我们想要指向的this的对象
+    a.fn = this;//将调用函数添加到想要指向的this的对象中，然后调用这个函数就可以了
 
     //eval计算字符串
     let result = eval('a.fn(...args)');
