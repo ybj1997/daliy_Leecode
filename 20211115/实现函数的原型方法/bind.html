@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    Function.prototype.bindSelf = function (context, ...args) {
+        let thisObj = context || window;
+        let _this = this;
+        thisObj.fn = _this;
+
+        return function(){
+            let result = eval('thisObj.fn(...args)');
+            delete thisObj.fn;
+            return result;
+        }
+    }
+    let a = { name: 'ybj', age: 18 };
+
+    function fn(x, y) {
+        console.log(this.__proto__);
+    }
+    fn.prototype.name='fn是构造函数'
+
+    // fn.bindSelf(a, 1, 2)();
+
+    //举例说明了fn.bind新函数创建实例对象，实例对象的构造函数时fn
+    let obj = fn.bind(a,1,2);
+    let b = new obj();
+    // console.log(b.__proto__);//fn
+</script>
+
+</html>
