@@ -1,4 +1,4 @@
-Function.prototype.callSelf = function(context,argArr) {
+Function.prototype.applySelf = function(context,argArr) {
     let thisObj = context || window;
     thisObj.fn = this;
 
@@ -15,4 +15,4 @@ function fn (a,b) {
     console.log(this.age+a+b);
 }
 
-fn.callSelf(obj,[19,20])
+fn.applySelf(obj,[19,20])
