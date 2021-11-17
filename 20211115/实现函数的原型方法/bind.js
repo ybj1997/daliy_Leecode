@@ -25,6 +25,7 @@ Function.prototype.bindSelf = function (context) {
     }
     //让新函数的原型对象指向bfn的原型对象
     // Temp.prototype = _this.prototype;
+    // newBind.prototype = new Temp();
     newBind.prototype = Object.create(_this.prototype);
     return newBind;
 }
