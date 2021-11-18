@@ -12,14 +12,17 @@ Object.createSelf = function(proto,propertiesObj = undefined) {
         throw new TypeError('Cannot convert undefined or null to object')
     }
 
+    /*将目标原型对象赋值给新对象*/
     function Temp(){};
     Temp.prototype = proto;
     let obj = new Temp();
+
     if(propertiesObj !== undefined){
-        //
+        /*重写新对象的属性*/
         Object.defineProperties(obj,propertiesObj);
     }
     if(proto === null){
+        /*当proto传入null时，创建新对象的原型对象为null*/
         obj.__proto__ = null;
     }
     return obj;
