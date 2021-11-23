@@ -145,3 +145,11 @@
 // }
 // removeDuplicates([1,5,4,8,2,1])
 
+const ws = new WebSocket('URL');
+ws.onopen = function(){
+    ws.send('massage');
+}
+
+ws.onmessage = function(e){
+    console.log('receive from server:'+e.data)
+}
