@@ -1,29 +1,26 @@
 import React, { Component } from 'react'
-
-import Header from './components/Header'
-import Footer from './components/Footer'
-import List from './components/List'
+import Login from './pages/Login/Login'
+// import Header from './components/Header'
+// import Footer from './components/Footer'
+// import List from './components/List'
 import './index.less'
 
 export default class APP extends Component {
     constructor(props) {
         super(props)
-        this.myref = React.createRef();
+        this.acb = React.createRef();
+    }
+    click= (e)=>{
+        console.log(this.acb);
+        console.log(e);
     }
 
-    componentDidMount() {
-        console.log(this.myref);
-        console.log(<Header/>,<Footer/>);
-    }
 
     render() {
         return (
-            <div className="todo-Container">
-                <div className="todo-wrap">
-                    <Header ref = {this.myref}/>
-                    <List />
-                    <Footer />
-                </div>
+            <div className="container" >
+                <button onClick={this.click}>点击</button>
+                <Login ref={this.acb}>click</Login>
             </div>
         )
     }
