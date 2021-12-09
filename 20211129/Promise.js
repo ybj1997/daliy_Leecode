@@ -137,39 +137,29 @@
             }
             else {
                 promises.forEach((p, index) => {
-                    if (p instanceof Promise) {
-                        p.then(
-                            value => {
-                                values[index] = value;//按索引顺序保存成功的value
-                                /*成功回调的次数等于promises的长度时，则全部成功*/
-                                resolvedPromiseCount++;
-                                if (resolvedPromiseCount === promises.length) {
-                                    //返回成功回调的数组
-                                    resolve(values)
-                                }
-                            },
-                            reason => {
-                                reject(reason);
+                    Promise.resolve(p).then(
+                        value => {
+                            values[index] = value;//按索引顺序保存成功的value
+                            /*成功回调的次数等于promises的长度时，则全部成功*/
+                            resolvedPromiseCount++;
+                            if (resolvedPromiseCount === promises.length) {
+                                //返回成功回调的数组
+                                resolve(values)
                             }
-                        )
-                    } else {
-                        values[index] = p;
-                        resolvedPromiseCount++;
-                        if (resolvedPromiseCount === promises.length) {
-                            //返回成功回调的数组
-                            resolve(values)
+                        },
+                        reason => {
+                            reject(reason);
                         }
-                    }
+                    )
                 })
             }
         })
     }
 
     Promise.race = function (promises) {
-        let len = promises.length;
         return new Promise((resolve, reject) => {
             promises.forEach((p, index) => {
-                Promise.resolve(p).then(resolve,reject)
+                Promise.resolve(p).then(resolve, reject)
             })
         })
     }
